@@ -1,8 +1,9 @@
 class Wake < Formula
   desc "Command-line tool for tailing multiple pods and containers in Kubernetes clusters"
   homepage "https://github.com/samba-rgb/wake"
-  url "https://github.com/samba-rgb/wake/archive/refs/tags/latest.tar.gz"
-  version "latest"
+  url "https://github.com/samba-rgb/wake/archive/refs/tags/v0.3.0.tar.gz"
+  sha256 "413941ab44eb866eda9b3422fab48f7e7816e1cab15a21b5613f334ca9b2ec62"
+  version "0.3.0"
   license "MIT"
   head "https://github.com/samba-rgb/wake.git", branch: "main"
 
@@ -21,20 +22,18 @@ class Wake < Formula
       system "curl", "-L", "-o", "wake-#{version}.tar.gz", 
              "https://github.com/samba-rgb/wake/archive/refs/tags/#{version}.tar.gz"
       system "tar", "-xzf", "wake-#{version}.tar.gz", "--strip-components=1"
+      
+      system "cargo", "install", "--root", prefix, "--path", "."
     else
-      # Default: get the latest release
-      ohai "Installing latest version of Wake"
-      system "curl", "-L", "-o", "wake-latest.tar.gz",
-             "https://github.com/samba-rgb/wake/archive/refs/heads/main.tar.gz"
-      system "tar", "-xzf", "wake-latest.tar.gz", "--strip-components=1"
+      # Default: install from the downloaded tarball (v0.3.0)
+      ohai "Installing Wake version 0.3.0 (latest)"
+      system "cargo", "install", "--root", prefix, "--path", "."
     end
-
-    system "cargo", "install", "--root", prefix, "--path", "."
   end
 
   def caveats
     <<~EOS
-      By default, the latest version is installed.
+      By default, version 0.3.0 (latest) is installed.
       
       To install a specific version, use:
         brew install samba-rgb/wake/wake --with-version=v0.1.0

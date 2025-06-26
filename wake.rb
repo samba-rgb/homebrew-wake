@@ -2,7 +2,7 @@ class Wake < Formula
   desc "Command-line tool for tailing multiple pods and containers in Kubernetes clusters"
   homepage "https://github.com/samba-rgb/wake"
   url "https://github.com/samba-rgb/wake/archive/refs/tags/v0.5.0.tar.gz"
-  sha256 "bb97de48449df5a77b5f12ac5b7de23821c12620bfc612ae9646cb0f553a390a"
+  sha256 "f91219d9050ad93bbef4099b7b96da1169169d25735cdb3090ba8ac333c1f770"
   version "0.5.0"
   license "MIT"
 

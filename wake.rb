@@ -1,9 +1,9 @@
 class Wake < Formula
   desc "Command-line tool for tailing multiple pods and containers in Kubernetes clusters"
   homepage "https://github.com/samba-rgb/wake"
-  url "https://github.com/samba-rgb/wake/archive/refs/tags/v0.9.1.tar.gz"
-  sha256 "6d82dd2b88271d7a2fd267a2477659a927e8af7f1c4f4a7c6c644fb1558d2021"
-  version "0.9.1"
+  url "https://github.com/samba-rgb/wake/archive/refs/tags/v0.9.4.tar.gz"
+  sha256 "54755155bfdcf42172b532bebeef74e3f9f46cbc8169361a268e3103de56041c"
+  version "0.9.4"
   license "MIT"
 
   depends_on "rust" => :build
@@ -20,7 +20,7 @@ class Wake < Formula
              "https://github.com/samba-rgb/wake/archive/refs/tags/#{requested_version}.tar.gz"
       system "tar", "-xzf", "wake-#{requested_version}.tar.gz", "--strip-components=1"
     else
-      ohai "Installing Wake version 0.9.1 (latest)"
+      ohai "Installing Wake version 0.9.4 (latest)"
     end
 
     system "cargo", "install", "--root", prefix, "--path", "."

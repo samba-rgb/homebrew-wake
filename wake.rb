@@ -1,9 +1,9 @@
 class Wake < Formula
   desc "Command-line tool for tailing multiple pods and containers in Kubernetes clusters"
   homepage "https://github.com/samba-rgb/wake"
-  url "https://github.com/samba-rgb/wake/archive/refs/tags/v0.9.9.tar.gz"
-  sha256 "c5e6b4ed424a9da5924632e948147ca9a3a29747d179d966432a692b43cff4ea"
-  version "0.9.9"
+  url "https://github.com/samba-rgb/wake/archive/refs/tags/v0.9.11.tar.gz"
+  sha256 "d884c059343ef7344aa57345e5a4166aa7fff8317cfd32c83e8f26d35c10f5ee"
+  version "0.9.11"
   license "MIT"
 
   depends_on "rust" => :build
@@ -20,10 +20,17 @@ class Wake < Formula
              "https://github.com/samba-rgb/wake/archive/refs/tags/#{requested_version}.tar.gz"
       system "tar", "-xzf", "wake-#{requested_version}.tar.gz", "--strip-components=1"
     else
-      ohai "Installing Wake version 0.9.9 (latest)"
+      ohai "Installing Wake version 0.9.11 (latest)"
     end
 
-    system "cargo", "install", "--root", prefix, "--path", "."
+    # Check if cargo binstall is available, otherwise use cargo install
+    if system("cargo", "binstall", "--version", out: File::NULL, err: File::NULL)
+      ohai "Using cargo binstall for faster installation"
+      system "cargo", "binstall", "--root", prefix, "--path", ".", "--no-confirm"
+    else
+      ohai "cargo binstall not available, using cargo install"
+      system "cargo", "install", "--root", prefix, "--path", "."
+    end
   end
 
   test do

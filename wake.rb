@@ -24,7 +24,11 @@ class Wake < Formula
   end
 
   def install
-    bin.install "wake"
+    if OS.mac?
+      bin.install "wake-aarch64-apple-darwin" => "wake"
+    elsif OS.linux?
+      bin.install "wake-x86_64-unknown-linux-gnu" => "wake"
+    end
   end
 
   test do

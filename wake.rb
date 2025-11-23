@@ -8,8 +8,8 @@ class Wake < Formula
     depends_on "openssl@3"
     
     if Hardware::CPU.arm?
-      url "https://github.com/samba-rgb/wake/releases/download/v0.9.11/wake-aarch64-apple-darwin"
-      sha256 "114b1227285b29de0f0b43c20a9ea8ece2d7039e3c11bb0ef1dad52fae36c061"
+      url "https://github.com/samba-rgb/wake/releases/download/v0.9.12/wake-aarch64-apple-darwin"
+      sha256 "711a35c0dd7883244e9400af2d2cb15d68f3a37fd713bb86b6a3a9e8aa72b349"
     else
       # Intel Mac not supported yet
       odie "Wake is not available for Intel Mac chips yet. Please use an ARM-based Mac (Apple Silicon)."
@@ -22,8 +22,8 @@ class Wake < Formula
       # ARM Linux not available in this release
       odie "Wake is not available for ARM Linux chips yet. Please use an Intel-based Linux system."
     else
-      url "https://github.com/samba-rgb/wake/releases/download/v0.9.11/wake-x86_64-unknown-linux-gnu"
-      sha256 "6d3e340e3d66b94b93610186bbc9ff27aa9f6549ff466a70b8b94c310deb465c"
+      url "https://github.com/samba-rgb/wake/releases/download/v0.9.12/wake-x86_64-unknown-linux-gnu"
+      sha256 "4b018033e045b4822021fc07379478182d22bc7b1637839fe044a11b2469f2ae"
     end
   end
 
@@ -33,24 +33,6 @@ class Wake < Formula
     elsif OS.linux?
       bin.install "wake-x86_64-unknown-linux-gnu" => "wake"
     end
-  end
-
-  # Add a post-install step to set up library linking on Linux
-  def post_install
-    return unless OS.linux?
-
-    # Create a wrapper script that sets up the library path
-    (bin/"wake-wrapper").write <<~EOS
-      #!/bin/bash
-      export LD_LIBRARY_PATH="#{Formula["openssl@3"].opt_lib}:$LD_LIBRARY_PATH"
-      exec "#{bin}/wake" "$@"
-    EOS
-    
-    (bin/"wake-wrapper").chmod 0755
-    
-    # Replace the original binary with our wrapper
-    (bin/"wake").unlink
-    (bin/"wake-wrapper").rename(bin/"wake")
   end
 
   test do

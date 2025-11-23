@@ -5,8 +5,8 @@ class Wake < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/samba-rgb/wake/releases/download/v0.9.11/wake-aarch64-apple-darwin.tar.gz"
-      sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
+      url "https://github.com/samba-rgb/wake/releases/download/v0.9.11/wake-aarch64-apple-darwin"
+      sha256 "114b1227285b29de0f0b43c20a9ea8ece2d7039e3c11bb0ef1dad52fae36c061"
     else
       # Intel Mac not supported yet
       odie "Wake is not available for Intel Mac chips yet. Please use an ARM-based Mac (Apple Silicon)."
@@ -15,11 +15,11 @@ class Wake < Formula
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/samba-rgb/wake/releases/download/v0.9.11/wake-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
+      # ARM Linux not available in this release
+      odie "Wake is not available for ARM Linux chips yet. Please use an Intel-based Linux system."
     else
-      # Intel Linux not supported yet
-      odie "Wake is not available for Intel Linux chips yet. Please use an ARM-based Linux system."
+      url "https://github.com/samba-rgb/wake/releases/download/v0.9.11/wake-x86_64-unknown-linux-gnu"
+      sha256 "6d3e340e3d66b94b93610186bbc9ff27aa9f6549ff466a70b8b94c310deb465c"
     end
   end
 

@@ -8,8 +8,8 @@ class Wake < Formula
     depends_on "openssl@3"
     
     if Hardware::CPU.arm?
-      url "https://github.com/samba-rgb/wake/releases/download/v0.9.12/wake-aarch64-apple-darwin"
-      sha256 "711a35c0dd7883244e9400af2d2cb15d68f3a37fd713bb86b6a3a9e8aa72b349"
+      url "https://github.com/samba-rgb/wake/releases/download/v0.9.13/wake-aarch64-apple-darwin"
+      sha256 "78829f389830d8cdd6b5db1b043f2dce8393e3b91b29a90a227cf54ef8f4e41a"
     else
       # Intel Mac not supported yet
       odie "Wake is not available for Intel Mac chips yet. Please use an ARM-based Mac (Apple Silicon)."
@@ -22,8 +22,8 @@ class Wake < Formula
       # ARM Linux not available in this release
       odie "Wake is not available for ARM Linux chips yet. Please use an Intel-based Linux system."
     else
-      url "https://github.com/samba-rgb/wake/releases/download/v0.9.12/wake-x86_64-unknown-linux-gnu"
-      sha256 "4b018033e045b4822021fc07379478182d22bc7b1637839fe044a11b2469f2ae"
+      url "https://github.com/samba-rgb/wake/releases/download/v0.9.13/wake-x86_64-unknown-linux-gnu"
+      sha256 "119e1eaf9a1ce813d4f2647eec95e308a2829a1a73db2d49d5321d90a46d4409"
     end
   end
 
